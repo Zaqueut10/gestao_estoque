@@ -28,3 +28,7 @@ ios/Flutter/app.flx
 # Build / caches
 build/
 .dart_tool/
+# Firebase config (optional but recommended for public repos)
+android/app/google-services.json
+lib/firebase_options.dart
+ios/Runner/GoogleService-Info.plist
