@@ -1,16 +1,54 @@
-# gestao_estoque
+# Gestão de Estoque e Vendas (Flutter + Firebase)
 
-A new Flutter project.
+Aplicativo de gestão de estoque e vendas desenvolvido em **Flutter**, usando **Firebase Authentication** e **Cloud Firestore**.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Requisitos
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK (versão estável)
+- Projeto Firebase configurado com:
+  - Authentication (Email/Senha)
+  - Cloud Firestore
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Como rodar
+
+1. Instalar dependências:
+
+   ```bash
+   flutter pub get
+   ```
+
+2. Rodar o app:
+
+   ```bash
+   flutter run
+   ```
+
+---
+
+## Funcionalidades
+
+- Login (Firebase Auth)
+- Produtos (CRUD)
+- Movimentações: entrada, saída, ajuste
+- Vendas: registra venda, baixa estoque e salva em **vendas** + **movimentos**
+- Relatório de vendas:
+  - total do período
+  - vendas por dia
+  - produtos mais vendidos
+- Estoque crítico
+
+---
+
+## Roteiro rápido de teste
+
+1. Criar conta / Login
+2. Cadastrar produto
+3. Fazer entrada (+10)
+4. Registrar venda (2 un)
+5. Conferir estoque atualizado
+6. Conferir movimentações (Venda em vermelho)
+7. Abrir relatório de vendas
