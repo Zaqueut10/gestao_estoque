@@ -17,3 +17,14 @@ ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
 ios/Flutter/Generated.xcconfig
 ios/Flutter/app.flx
+# IDE
+.idea/
+*.iml
+
+# Flutter generated
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Build / caches
+build/
+.dart_tool/
