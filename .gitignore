@@ -1,0 +1,19 @@
+# Flutter / Dart
+.dart_tool/
+build/
+.pub/
+.pub-cache/
+.packages
+
+# Android signing
+android/key.properties
+**/*.jks
+**/*.keystore
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/app.flx
