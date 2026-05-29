@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -8,8 +11,16 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+} else {
+    throw GradleException("Arquivo key.properties não encontrado na raiz do projeto.")
+}
+
 android {
-    namespace = "com.example.gestao_estoque"
+    namespace = "com.zfautomation.gestao_estoque"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -23,21 +34,36 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.gestao_estoque"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        applicationId = "com.zfautomation.gestao_estoque"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            val keyAliasProp = keystoreProperties["keyAlias"]?.toString()
+            val keyPasswordProp = keystoreProperties["keyPassword"]?.toString()
+            val storeFileProp = keystoreProperties["storeFile"]?.toString()
+            val storePasswordProp = keystoreProperties["storePassword"]?.toString()
+
+            if (keyAliasProp == null || keyPasswordProp == null || storeFileProp == null || storePasswordProp == null) {
+                throw GradleException("Erro ao carregar key.properties. Verifique se o arquivo existe na raiz do projeto e se as chaves estão corretas.")
+            }
+
+            keyAlias = keyAliasProp
+            keyPassword = keyPasswordProp
+            storeFile = file(storeFileProp)
+            storePassword = storePasswordProp
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
